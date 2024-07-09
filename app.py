@@ -9,15 +9,13 @@ app = Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
 app.layout = html.Div([
-    html.H1('Hello World'),
-    dcc.Dropdown(['LA', 'NYC', 'MTL'],
-        'LA',
-        id='dropdown'
-    ),
+    html.H1('Sentiment Analysis App'),
+    html.I("Try typing a review about a movie ..."),
+    dcc.Input(id="input1", type="text", placeholder="type here", debounce=True),
     html.Div(id='display-value')
 ])
 
-@callback(Output('display-value', 'children'), Input('dropdown', 'value'))
+@callback(Output('display-value', 'children'), Input('input1', 'value'))
 def display_value(value):
     return f'You have selected {value}'
 
