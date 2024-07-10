@@ -29,12 +29,9 @@ keep track of how long the different time series are within the batch. There's
 an alternative "packed" representation used by PyTorch; we convert between the
 padded and packed versions in the current version of the code.
 """
-import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import torch.nn as nn
-from matplotlib.ticker import MaxNLocator
-from tqdm import tqdm
 
 
 def UDA_pytorch_classifier_fit(model, optimizer, loss,
