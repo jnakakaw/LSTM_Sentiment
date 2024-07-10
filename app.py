@@ -1,5 +1,6 @@
 from dash import Dash, dcc, html, Input, Output, callback
 import os
+import forecast as fc
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -19,7 +20,8 @@ app.layout = html.Div([
 
 @callback(Output('display-value', 'children'), Input('input1', 'value'))
 def display_value(value):
-    return f'Your review is the following: {value}'
+    sentiment_val = fc.sentiment(value)
+    return f'{sentiment_val}'
 
 if __name__ == '__main__':
     app.run(debug=True)
