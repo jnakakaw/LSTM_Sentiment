@@ -31,19 +31,4 @@ def display_value(value):
     return f'{sentiment_val}'
 
 if __name__ == '__main__':
-    class EmbeddingLSTMLinearModel(nn.Module):
-        def __init__(self, embedding_matrix, num_lstm_output_nodes, num_final_output_nodes):
-            super().__init__()
-            self.embedding_layer = nn.Embedding.from_pretrained(embedding_matrix)
-            self.lstm_layer = nn.LSTM(embedding_matrix.shape[1], num_lstm_output_nodes)
-            self.linear_layer = nn.Linear(num_lstm_output_nodes, num_final_output_nodes)
-
-        def forward(self, text_encodings, lengths):
-            embeddings = self.embedding_layer(text_encodings)
-
-            rnn_last_time_step_outputs = \
-                UDA_get_rnn_last_time_step_outputs(embeddings, lengths, self.lstm_layer)
-
-            return self.linear_layer(rnn_last_time_step_outputs)
-    
     app.run(debug=True)

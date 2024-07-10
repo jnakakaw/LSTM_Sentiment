@@ -48,7 +48,8 @@ def sentiment(text):
     
                 return self.linear_layer(rnn_last_time_step_outputs)
         
-        simple_lstm_model = torch.load("./lstm/sentiment_lstm.pt")
+        simple_lstm_model = EmbeddingLSTMLinearModel(embedding_matrix, 32, 2)
+        simple_lstm_model.load_state_dict(torch.load('./lstm/imdb_lstm_epoch20.pt'))
 
         sent_val = UDA_pytorch_classifier_predict(simple_lstm_model,
                                 [vocab(tokenizer_lowercase(text))],
